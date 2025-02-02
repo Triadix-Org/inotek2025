@@ -1,11 +1,13 @@
 <?php get_header(); ?>
-    <div class="bg-washed-blue">
-        <div class="container front-page-padding">
-            <div class="" id="site-intro">
-                <div class="col-lg-6" id="site-intro-text">
-                    <p class="site-intro-title" style="margin-top: 10px;">Welcome<br> Future Startup!</p>
-                    <p class="site-intro-subtitle">To Indonesia's credible Technology Business Incubator</p>
-					<!-- 
+<div>
+    <div class="container front-page-padding">
+        <div class="" id="site-intro">
+            <div class="col-lg-6" id="site-intro-text">
+                <p class="site-intro-title" style="margin-top: 10px; text-transform:uppercase;">Selamat Datang<br> Startup dan UMKM!</p>
+                <p class="site-intro-subtitle">Di Inkubator Bisnis Teknologi Indonesia, yang Kredibel.</p>
+                <p class="site-intro-subtitle">Yayasan Inovasi Teknologi Indonesia (INOTEK) adalah inkubator bisnis yang didirikan untuk mendukung pengembangan usaha berbasis Teknologi Tepat Guna.</p>
+                <p class="site-intro-subtitle" style="font-style: italic;">Applied Technology for Common Good.</p>
+                <!-- 
                     <div id="stsp-banner" style="margin-top: 30px;">
                         <p>
                             <img src="<?php echo get_template_directory_uri() ?>/assets/images/stsp_logo.png" class="img-responsive"><br>
@@ -16,386 +18,228 @@
                                style="background-color: #00C5CD; border: 0; font-weight: 600">Join Now</a>
                         </p>
                     </div> -->
-                </div>
-                <div class="col-lg-6 text-center" id="site-intro-image">
-                    <img alt="Inotek Illustration"
-                         src="<?php echo get_template_directory_uri(); ?>/assets/images/illustration/illustration.png"
-                         width="485" class="img-responsive">
-                </div>
+            </div>
+            <div class="col-lg-6 text-center" id="site-intro-image">
+                <img alt="Inotek Illustration" style="margin-top: 40px; border-radius: 20px;"
+                    src="<?php echo get_template_directory_uri(); ?>/assets/images/hero-section.png"
+                    width="500" class="img-responsive">
             </div>
         </div>
     </div>
+</div>
 
-    <div class="container front-page-padding" id="program-container">
-        <h2 class="heading-2 front-page-heading"><?php _e( 'Are you ready to scale up?', 'inotek2020' ); ?></h2>
+<div class="container-fluid bg-gradient-primary" id="program-container">
+    <div class="container front-page-padding">
+        <h2 class="heading-2 front-page-heading"><?php _e('Apakah Anda siap untuk scale up?', 'inotek2025'); ?></h2>
         <div class="row">
-			<?php
-			$program_id    = inotek_get_post_id( 'program' );
-			$program_args  = array(
-				'post_type'      => 'page',
-				'posts_per_page' => 3,
-				'post_parent'    => $program_id,
-				'order'          => 'ASC',
-				'orderby'        => 'menu_order'
-			);
-			$program_query = new WP_Query( $program_args );
+            <?php
+            $program_id    = inotek_get_post_id('program');
+            $program_args  = array(
+                'post_type'      => 'page',
+                'posts_per_page' => 3,
+                'post_parent'    => $program_id,
+                'order'          => 'ASC',
+                'orderby'        => 'menu_order'
+            );
+            $program_query = new WP_Query($program_args);
 
-			if ( $program_query->have_posts() ) {
-				while ( $program_query->have_posts() ) {
-					$program_query->the_post();
-					?>
-                    <div class="col-lg-4">
+            if ($program_query->have_posts()) {
+                while ($program_query->have_posts()) {
+                    $program_query->the_post();
+            ?>
+                    <div class="col-lg-3">
                         <div class="program-card">
-                            <h3 class="program-title"><?php the_title() ?></h3>
-                            <div class="program-subtitle"><?php echo get_post_meta( get_the_ID(), 'subtitle', true ); ?></div>
                             <img alt="" class="program-image"
-                                 src="<?php echo get_the_post_thumbnail_url() ?>">
-                            <a class="program-card-link" href="<?php echo get_the_permalink(); ?>"><span class="hidden">GO</span></a>
+                                src="<?php echo get_the_post_thumbnail_url() ?>">
+                            <h3 class="program-title"><?php the_title() ?></h3>
+                            <div class="program-subtitle"><?php echo get_post_meta(get_the_ID(), 'subtitle', true); ?></div>
+                            <a class="program-card-link" href="<?php echo get_the_permalink(); ?>">Informasi Selanjutnya</a>
                         </div>
                     </div>
-					<?php
-				}
-			}
-			wp_reset_postdata();
-			?>
+            <?php
+                }
+            }
+            wp_reset_postdata();
+            ?>
         </div>
 
     </div>
+</div>
 
-    <div class="rounded-offset-container front-page-padding bg-purple text-white offside-container">
-        <div class="container">
-            <div class="row">
-                <h2 class="heading-2 text-white"><?php _e( 'Our achievement', 'inotek2020' ); ?></h2>
+<div class="container front-page-padding" id="achievement">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="achiev-desc text-center">
+                <h2 class="heading-2 text-white " style="margin-top: 0; margin-bottom: 20px;"><?php _e('Capaian Kami', 'inotek2025'); ?></h2>
+                <div class="achiev-subtitle">
+                    Sejak tahun 2008, INOTEK hadir sebagai jembatan untuk menjangkau ratusan wirausaha berbasis teknologi tepat guna di seluruh Indonesia. Kami berkomitmen untuk memobilisasi dukungan bisnis yang diperlukan agar mereka dapat berkembang menjadi perusahaan yang maju dan berkelanjutan.
+                </div>
             </div>
-            <div class="text-center">
-				<?php
-				$achievement_args = array(
-					'post_type'     => 'inotek_achievement',
-					'post_per_page' => 6,
-					'meta_key'      => '_achievement_position',
-					'orderby'       => array( 'meta_value_num' => 'ASC' )
-				);
+            <div class="achiev-button text-center">
+                <a href="#">Annual Narrative INOTEK Report 2024</a>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="text-center row">
+                <?php
+                $achievement_args = array(
+                    'post_type'     => 'inotek_achievement',
+                    'post_per_page' => 6,
+                    'meta_key'      => '_achievement_position',
+                    'orderby'       => array('meta_value_num' => 'ASC')
+                );
 
-				$achievement_query = new WP_Query( $achievement_args );
+                $achievement_query = new WP_Query($achievement_args);
 
-				if ( $achievement_query->have_posts() ) {
-					while ( $achievement_query->have_posts() ) {
-						$achievement_query->the_post();
-						$link = trim( get_post_meta( get_the_ID(), '_achievement_link', true ) );
-						?>
-                        <div class="stat-item col-lg-4">
+                if ($achievement_query->have_posts()) {
+                    while ($achievement_query->have_posts()) {
+                        $achievement_query->the_post();
+                        $link = trim(get_post_meta(get_the_ID(), '_achievement_link', true));
+                ?>
+                        <div class="stat-item col-lg-6">
                             <div class="stat-number">
-                                <span class="stat-prefix"><?php echo get_post_meta( get_the_ID(), '_achievement_prefix', true ); ?></span>
+                                <span class="stat-prefix"><?php echo get_post_meta(get_the_ID(), '_achievement_prefix', true); ?></span>
                                 <span class="numscroller"
-                                      data-delay="<?php echo get_post_meta( get_the_ID(), '_achievement_delay', true ); ?>"
-                                      data-increment="<?php echo get_post_meta( get_the_ID(), '_achievement_increment', true ); ?>"
-                                      data-max="<?php echo get_post_meta( get_the_ID(), '_achievement_value', true ); ?>"
-                                      data-min="1"><?php echo get_post_meta( get_the_ID(), '_achievement_value', true ); ?></span>
+                                    data-delay="<?php echo get_post_meta(get_the_ID(), '_achievement_delay', true); ?>"
+                                    data-increment="<?php echo get_post_meta(get_the_ID(), '_achievement_increment', true); ?>"
+                                    data-max="<?php echo get_post_meta(get_the_ID(), '_achievement_value', true); ?>"
+                                    data-min="1"><?php echo get_post_meta(get_the_ID(), '_achievement_value', true); ?></span>
                             </div>
                             <span class="stat-text"><a href="#"></a>
-                            <?php if ( empty( $link ) ): ?>
-	                            <?php the_title(); ?>
-                            <?php else: ?>
-                                <a href="<?php print_r( get_permalink( inotek_get_url( $link ) ) ); ?>"><?php the_title(); ?></a>
-                            <?php endif; ?>
+                                <?php if (empty($link)): ?>
+                                    <?php the_title(); ?>
+                                <?php else: ?>
+                                    <a href="<?php print_r(get_permalink(inotek_get_url($link))); ?>"><?php the_title(); ?></a>
+                                <?php endif; ?>
                             </span>
                         </div>
-						<?php
-					}
-				}
+                <?php
+                    }
+                }
 
-				wp_reset_postdata();
-				?>
+                wp_reset_postdata();
+                ?>
             </div>
         </div>
     </div>
+</div>
 
+<div class="container-fluid bg-gradient-primary" id="forum-container">
     <div class="container front-page-padding">
-        <div class="row">
+        <div class="row forum-grid">
+            <div class="col-lg-8" style="padding-right:20px;">
+                <h2 class="heading-2 front-page-heading" style="text-align: left;"><?php _e('Scale up Forum', 'inotek2025'); ?></h2>
+                <div>
+                    <?php
+                    $live_forum_args = array(
+                        'post_type'     => 'inotek_forum',
+                        'post_per_page' => 1,
+                    );
+
+                    $live_forum_query = new WP_Query($live_forum_args);
+
+                    if ($live_forum_query->have_posts()) {
+                        while ($live_forum_query->have_posts()) {
+                            $live_forum_query->the_post(); ?>
+                            <h3 class="heading-4 forum-title"><?php the_title(); ?></h3>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <?php
+                                echo get_post_meta(get_the_ID(), '_forum_embed', true);
+                                ?>
+                            </div>
+                    <?php
+                        }
+                    }
+
+                    wp_reset_postdata();
+                    ?>
+
+                </div>
+            </div>
             <div class="col-lg-4">
-                <h2 class="heading-2 front-page-heading"><?php _e( 'Upcoming events', 'inotek2020' ); ?></h2>
-				<?php
-				global $post;
+                <h2 class="heading-2 front-page-heading" style="text-align: left;"><?php _e('Upcoming events', 'inotek2025'); ?></h2>
+                <?php
+                global $post;
 
-				$events = tribe_get_events( [
-					'posts_per_page' => 5,
-					'eventDisplay'   => 'custom',
-					'start_date'     => 'now',
-				] );
+                $events = tribe_get_events([
+                    'posts_per_page' => 5,
+                    'eventDisplay'   => 'custom',
+                    'start_date'     => 'now',
+                ]);
 
-				if ( count( $events ) > 0 ):
-					foreach ( $events as $post ): setup_postdata( $post ); ?>
+                if (count($events) > 0):
+                    foreach ($events as $post): setup_postdata($post); ?>
                         <div class="event-card">
-                            <p class="event-date"><?php echo tribe_get_start_date( $post, false, 'd F Y' ) ?></p>
+                            <p class="event-date"><?php echo tribe_get_start_date($post, false, 'd F Y') ?></p>
                             <p class="event-title">
                                 <a class="event-link"
-                                   href="<?php echo tribe_get_event_link(); ?>"><?php echo $post->post_title; ?></a>
+                                    href="<?php echo tribe_get_event_link(); ?>"><?php echo $post->post_title; ?></a>
                             </p>
                         </div>
-					<?php endforeach;
-				else:
-					?>
-                    <p><?php echo __( 'No event plan yet. Stay tuned' ) ?></p>
-				<?php
-				endif;
-				?>
-
-            </div>
-            <div class="col-lg-8">
-                <h2 class="heading-2 front-page-heading"><?php _e( 'News updates', 'inotek2020' ); ?></h2>
-				<?php
-				$args = array(
-					'posts_per_page' => 4,
-					'category_name' => 'highlight',
-				);
-				$counter       = 0;
-				$related_query = new WP_Query( $args );
-				while ( $related_query->have_posts() ): $related_query->the_post();
-					?>
-					<?php if ( ( $counter % 2 ) == 0 ): ?><div class="row"><?php endif; ?>
-                    <div class="col-lg-6">
-                        <div class="article-card">
-                            <a href="<?php the_permalink(); ?>" class="article-image-link">
-								<?php if ( has_post_thumbnail() ): ?>
-									<?php the_post_thumbnail( 'article-thumb', array( 'class' => 'article-thumb img-responsive' ) ); ?>
-								<?php else: ?>
-                                    <img alt="" class="article-thumb img-responsive"
-                                         src="<?php echo get_template_directory_uri(); ?>/assets/images/recentnews-12x.jpg">
-								<?php endif; ?>
-                            </a>
-                            <h3 class="article-title"><a
-                                        href="<?php the_permalink(); ?>"><span><?php the_title(); ?></span></a></h3>
-                            <p class="article-date"><?php echo get_the_date( 'd F Y' ); ?></p>
-                        </div>
-                    </div>
-					<?php if ( $counter % 2 == 1 ): ?></div><hr><?php endif; ?>
-					<?php $counter ++; endwhile;
-				wp_reset_postdata(); ?>
-
-            </div>
-        </div>
-        <div class="row hidden-xs">
-            <div class="col-lg-4 text-right">
-                <a href="<?php echo get_site_url(); ?>/events"
-                   class="dark-link front-link"><?php _e( 'See all events', 'inotek2020' ); ?></a>
-            </div>
-            <div class="col-lg-8 text-right">
-                <a href="<?php echo get_category_link( 76 ); ?>"
-                   class="dark-link front-link"><?php _e( 'See all announcements', 'inotek2020' ); ?></a>
+                    <?php endforeach;
+                else:
+                    ?>
+                    <p><?php echo __('No event plan yet. Stay tuned') ?></p>
+                <?php
+                endif;
+                ?>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="container front-page-padding">
-        <h2 class="heading-2 front-page-heading"><?php _e( 'Scale up Forum', 'inotek2020' ); ?></h2>
-        <div class="row">
-			<?php
-			$live_forum_args = array(
-				'post_type'     => 'inotek_forum',
-				'post_per_page' => 1,
-			);
+<div class="container front-page-padding">
+    <h2 class="heading-2-alt front-page-heading">
+        <?php _e('Mitra Kami', 'inotek2025'); ?>
+    </h2>
+    <div class="partner-slide">
+        <?php
+        $partner_args  = array(
+            'post_type' => 'inotek_partner',
+            'meta_key'  => '_inotek_partner_order',
+            'orderby'   => array('meta_value_num' => 'ASC')
+        );
+        $partner_query = new WP_Query($partner_args);
 
-			$live_forum_query = new WP_Query( $live_forum_args );
+        if ($partner_query->have_posts()) {
+            while ($partner_query->have_posts()) {
+                $partner_query->the_post();
+                get_template_part('template-parts/frontpage/content', 'partner');
+            }
+        }
 
-			if ( $live_forum_query->have_posts() ) {
-				while ( $live_forum_query->have_posts() ) {
-					$live_forum_query->the_post(); ?>
-                    <div class="col-lg-6">
-                        <h3 class="heading-3 forum-title"><?php the_title(); ?></h3>
-                        <p>
-                                <span class="forum-date">
-                                    <?php echo date_i18n( 'l, F j, Y', strtotime( get_post_meta( get_the_ID(), '_forum_date', true ) ) ); ?>
-                                </span><br>
-                            <span class="forum-time">
-                                    <?php echo get_post_meta( get_the_ID(), '_forum_time_start', true ); ?>
-                                    -
-	                                <?php echo get_post_meta( get_the_ID(), '_forum_time_end', true ); ?>
-                            </span>
-                        </p>
-                        <p>
-                            Speaker:<br>
-							<?php echo get_post_meta( get_the_ID(), '_forum_speaker', true ); ?>
-                        </p>
-                        <p>
-                            Link:<br>
-                            <a href="<?php echo get_post_meta( get_the_ID(), '_forum_url', true ); ?>" target="_blank"><?php echo get_post_meta( get_the_ID(), '_forum_url', true ); ?></a>
-
-                        </p>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="embed-responsive embed-responsive-16by9">
-							<?php
-							echo get_post_meta( get_the_ID(), '_forum_embed', true );
-							?>
-                        </div>
-                    </div>
-					<?php
-				}
-			}
-
-			wp_reset_postdata();
-			?>
-
-        </div>
+        wp_reset_postdata();
+        ?>
     </div>
+</div>
 
-    <div class="rounded-offset-container bg-semi-white front-page-padding offside-container">
-        <div class="container">
-            <div class="row">
-                <h2 class="heading-2 front-page-heading">
-					<?php _e( 'Business Consultant Team', 'inotek2020' ); ?>
-                </h2>
-            </div>
-            <div class="tab-container" id="consultant-container">
-				<?php $taxonomies = get_terms( array(
-					'taxonomy'   => 'team',
-					'hide_empty' => false,
-					'orderby'    => 'id'
-				) ); ?>
-                <ul class="etabs list-unstyled list-inline text-center">
-					<?php foreach ( $taxonomies as $taxonomy ): ?>
-                        <li>
-                            <a href="#consultant-<?php echo strtolower( $taxonomy->name ); ?>"><?php echo $taxonomy->name; ?></a>
-                        </li>
-					<?php endforeach; ?>
-                </ul>
+<div class="container front-page-padding">
+    <h2 class="heading-2-alt front-page-heading"><?php _e('Apa Kata Mereka?', 'inotek2025'); ?></h2>
+    <?php
+    $args = array(
+        'post_type' => 'inotek_testimonial',
+        'meta_key'  => '_highlight_order',
+        'orderby'   => array('meta_value_num' => 'ASC')
+    );
 
-				<?php foreach ( $taxonomies as $taxonomy ): ?>
-                    <div class="text-center" id="consultant-<?php echo strtolower( $taxonomy->name ); ?>">
-                        <ul class="consultant-list">
-							<?php
-							$args = array(
-								'post_type' => 'inotek_people',
-								'tax_query' => array(
-									array(
-										'taxonomy' => 'team',
-										'field'    => 'term_id',
-										'terms'    => $taxonomy->term_id,
-									),
-								),
-								'meta_key'  => '_display_order',
-								'orderby'   => array( 'meta_value_num' => 'ASC' )
-							);
+    $counter           = 0;
+    $testimonial_query = new WP_Query($args);
+    if ($testimonial_query->have_posts()) {
+        $testimonial_total = $testimonial_query->post_count;
+        while ($testimonial_query->have_posts()) {
+            if ($counter % 3 == 0) {
+                echo '<div class="row">';
+            }
+            $testimonial_query->the_post();
+            get_template_part('template-parts/frontpage/content', 'testimonials');
+            $counter++;
+            if (($counter % 3 == 0) || ($counter == $testimonial_total)) {
+                echo '</div>';
+            }
+        }
+    }
 
-							$people_query = new WP_Query( $args );
-							if ( $people_query->have_posts() ) {
-								while ( $people_query->have_posts() ) {
-									$people_query->the_post();
-									$people_line_3 = trim(get_post_meta( get_the_ID(), '_job_description', true ));
-									?>
-                                    <li class="person-card">
-										<?php if ( has_post_thumbnail() ): ?>
-                                            <img alt="<?php the_title() ?> " class="person-avatar"
-                                                 src="<?php the_post_thumbnail_url(); ?>">
-										<?php else: ?>
-                                            <img alt="" class="testimonial-avatar" class="testimonial-avatar"
-                                                 src="<?php echo get_template_directory_uri(); ?>/assets/images/nopic.png"
-                                                 ?>
-										<?php endif; ?>
-                                        <br>
-                                        <span class="person-name"><?php echo get_the_title(); ?></span><br>
-                                        <span class="person-organisation"><?php echo get_post_meta( get_the_ID(), '_organisation_name', true ) ?></span><br>
-                                        <span class="person-position"><?php echo get_post_meta( get_the_ID(), '_job_description', true ) ?></span>
-                                    </li>
-									<?php
-
-								}
-							}
-
-							wp_reset_postdata();
-							?>
-                        </ul>
-                    </div>
-				<?php endforeach; ?>
-            </div>
-        </div>
-    </div>
-
-    <div class="container front-page-padding">
-        <h2 class="heading-2 front-page-heading">
-			<?php _e( 'Partners', 'inotek2020' ); ?>
-        </h2>
-        <div class="partner-slide">
-			<?php
-			$partner_args  = array(
-				'post_type' => 'inotek_partner',
-				'meta_key'  => '_inotek_partner_order',
-				'orderby'   => array( 'meta_value_num' => 'ASC' )
-			);
-			$partner_query = new WP_Query( $partner_args );
-
-			if ( $partner_query->have_posts() ) {
-				while ( $partner_query->have_posts() ) {
-					$partner_query->the_post();
-					get_template_part( 'template-parts/frontpage/content', 'partner' );
-				}
-			}
-
-			wp_reset_postdata();
-			?>
-        </div>
-    </div>
-
-    <div class="rounded-offset-container front-page-padding offside-container bg-purple fund-container text-white">
-        <div class="container">
-            <div class="row fund-intro">
-                <div class="col-lg-4">
-                    <h2 class="heading-2 text-white no-top-margin"><?php _e( 'Looking for <br>Potential Partners &amp; Funders', 'inotek2020' ); ?></h2>
-                    <br>
-                    <p class="sub-heading-potential">Applied Technology for Common Good</p>
-                </div>
-                <div class="col-lg-8">
-                    <p class="bigger-text text-bold">INOTEK Foundation is business incubator that supports the
-                        development of technologically-innovative start-up and small and growing businesses (SGBs) that
-                        serve Bottom-of-Pyramid (BOP) markets. INOTEK services to develop and disseminate applicative
-                        technology for commons good.</p>
-                    <p>Your support to be a partner and/or donor will accelerate startups in developing their innovation
-                        and technology to provide positive impact for the community. Join us for the advancement of
-                        Indonesian technology.</p>
-                    <br>
-                    <a href="<?php echo get_page_uri( get_option( 'inotek_partner_link', 0 ) ); ?>" target="_blank"
-                       class="btn btn-fund"><?php _e( 'Join as a Partner', 'inotek2020' ); ?></a>
-                    <a href="<?php echo get_page_uri( get_option( 'inotek_funder_link', 0 ) ); ?>" target="_blank"
-                       class="btn btn-fund"><?php _e( 'Join as a Funder', 'inotek2020' ); ?></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container front-page-padding">
-        <h2 class="heading-2 front-page-heading"><?php _e( 'Testimonials', 'inotek2020' ); ?></h2>
-		<?php
-		$args = array(
-			'post_type' => 'inotek_testimonial',
-			'meta_key'  => '_highlight_order',
-			'orderby'   => array( 'meta_value_num' => 'ASC' )
-		);
-
-		$counter           = 0;
-		$testimonial_query = new WP_Query( $args );
-		if ( $testimonial_query->have_posts() ) {
-			$testimonial_total = $testimonial_query->post_count;
-			while ( $testimonial_query->have_posts() ) {
-				if ( $counter % 3 == 0 ) {
-					echo '<div class="row">';
-				}
-				$testimonial_query->the_post();
-				get_template_part( 'template-parts/frontpage/content', 'testimonials' );
-				$counter ++;
-				if ( ( $counter % 3 == 0 ) || ( $counter == $testimonial_total ) ) {
-					echo '</div>';
-				}
-			}
-		}
-
-		wp_reset_postdata();
-		?>
-    </div>
-    <div class="container">
-        <div class="text-center big-link-container">
-            <a class="dark-link" href="<?php echo get_permalink( get_page_by_path( 'contact-us' ) ); ?>" id="big-link">
-				<?php _e( 'We’d love to hear from you!', 'inotek2020' ); ?>
-            </a>
-        </div>
-    </div>
+    wp_reset_postdata();
+    ?>
+</div>
 <?php get_footer();

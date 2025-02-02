@@ -1,16 +1,16 @@
 <?php
-    echo get_template_part( 'template-parts/modal', 'search' );
+echo get_template_part('template-parts/modal', 'search');
 ?>
 </main>
-<div id="main-footer">
-    <footer>
-        <div class="container">
-            <div class="footer-menu-container">
-                <div class="col-lg-3 col-sm-3">
-                    <img alt="Inotek Icon" class="inotek-icon"
-                         src="<?php echo get_template_directory_uri() ?>/assets/images/logo-only.png" width="48">
-                </div>
-                <div class="col-lg-3 col-sm-3">
+<div id="main-footer" class="bg-gradient-primary">
+	<footer>
+		<div class="container">
+			<div class="footer-menu-container">
+				<div class="col-lg-3 col-sm-3">
+					<img alt="Inotek Icon" class="inotek-icon"
+						src="<?php echo get_template_directory_uri() ?>/assets/images/logo-only.png" width="48">
+				</div>
+				<div class="col-lg-3 col-sm-3">
 					<?php
 					$main_nav_args = array(
 						'menu'            => '',
@@ -31,10 +31,10 @@
 						'walker'          => '',
 						'theme_location'  => 'footer-menu-01',
 					);
-					wp_nav_menu( $main_nav_args );
+					wp_nav_menu($main_nav_args);
 					?>
-                </div>
-                <div class="col-lg-3 col-sm-3">
+				</div>
+				<div class="col-lg-3 col-sm-3">
 					<?php
 					$main_nav_args = array(
 						'menu'            => '',
@@ -55,10 +55,10 @@
 						'walker'          => '',
 						'theme_location'  => 'footer-menu-02',
 					);
-					wp_nav_menu( $main_nav_args );
+					wp_nav_menu($main_nav_args);
 					?>
-                </div>
-                <div class="col-lg-3 col-sm-3">
+				</div>
+				<div class="col-lg-3 col-sm-3">
 					<?php
 					$main_nav_args = array(
 						'menu'            => '',
@@ -79,21 +79,22 @@
 						'walker'          => '',
 						'theme_location'  => 'footer-menu-03',
 					);
-					wp_nav_menu( $main_nav_args );
+					wp_nav_menu($main_nav_args);
 					?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="copyright col-lg-6 col-sm-12">
-                    &copy; 2020 INOTEK Foundation. All Rights Reserved.
-                </div>
-                <div id="back-to-top" class="col-lg-6 col-sm-12">
-                    <a href="#">Back to Top</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+				</div>
+			</div>
+			<div class="row">
+				<div class="copyright col-lg-6 col-sm-12" style="color: #fff;">
+					&copy; 2020 INOTEK Foundation. All Rights Reserved.
+				</div>
+				<div id="back-to-top" class="col-lg-6 col-sm-12">
+					<a href="#" style="color: #fff;">Back to Top</a>
+				</div>
+			</div>
+		</div>
+	</footer>
 </div>
 <?php wp_footer(); ?>
 </body>
+
 </html>
