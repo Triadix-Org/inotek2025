@@ -1,0 +1,21 @@
+@media screen and (max-width: 1024px) {
+  .offside-container {
+    border-radius: 1em;
+    width: 100%;
+  }
+
+  #site-intro-image img {
+    display: inline-block;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .inotek-icon {
+    margin-bottom: 30px;
+  }
+
+  #back-to-top, .copyright {
+    display: block;
+    text-align: center;
+  }
+}
