@@ -566,16 +566,16 @@ a:hover {
 #site-page {
   background: url("../images/illustration/hero-lines2x.png") no-repeat center bottom;
   background-size: 33.5%;
-  padding-bottom: 132px;
-  padding-top: 20px;
+  /* padding-bottom: 132px;
+  padding-top: 20px; */
 }
 
 .page-title {
-  color: #4dc8f4;
+  color: #10035b;
   font-size: 32px;
   font-weight: 600;
   line-height: 1.35em;
-  margin-top: 150px;
+  /* margin-top: 150px; */
 }
 
 .page-title .sub-title {
@@ -813,31 +813,31 @@ a:hover {
 }
 .wpcf7-form .contact-submit {
   margin-top: 20px;
-  padding: 15px 60px;
-  background-color: #4dc8f4;
+  padding: 12px 60px;
+  background-color: #0075ff;
   font-size: 18px;
   line-height: 30px;
   font-weight: 600;
   display: inline-block;
   color: white;
-  border: 0;
+  border: 3px solid #10035b;
   text-decoration: none;
   cursor: pointer;
-  border-radius: 0;
+  border-radius: 30px;
 }
 
 .wpcf7-form-control.wpcf7-text, .wpcf7-form-control.wpcf7-textarea {
   display: block;
   width: 100%;
   height: 60px;
-  padding: 8px 12px;
-  margin-bottom: 10px;
+  padding: 16px 12px;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
   vertical-align: middle;
   background-color: #ffffff;
-  border: 1px solid #cccccc;
+  border: 3px solid #10035b;
+  border-radius: 30px;
 }
 .wpcf7-form-control.wpcf7-textarea {
   height: 100px;
@@ -923,4 +923,59 @@ span.wpcf7-list-item input[type=radio]:checked {
 
 .padding-fresh {
   padding: 80px 0;
+}
+
+.text-color-primary {
+  color: #10035b;
+}
+
+.category-filter {
+  padding: 60px 0;
+}
+
+.filter-button {
+  padding: 6px 22px;
+  background-color: #10035b;
+  color: #fff;
+  border-radius: 20px;
+  border: 2px solid #00000000;
+  margin: 0 5px;
+  transition: ease 0.2s;
+}
+
+.filter-button:hover {
+  background-color: #0075ff;
+}
+
+.active-category-sme {
+  background-color: #0075ff;
+  color: white;
+}
+
+.sme-thumb {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.text-md {
+  margin-top: -15px;
+  font-size: 14px;
+}
+
+.sme-desc {
+  margin-top: 20px;
+}
+
+.sme-button {
+  text-align: center;
+  background-color: #0075ff;
+  color: white;
+  padding: 8px 20px;
+  font-size: 14px;
+  border-radius: 20px;
+  font-weight: normal;
+}
+
+.page-sme-item {
+  padding-bottom: 70px;
 }
