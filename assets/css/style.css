@@ -979,3 +979,7 @@ span.wpcf7-list-item input[type=radio]:checked {
 .page-sme-item {
   padding-bottom: 70px;
 }
+
+.hero-image-program {
+  width: 100%;
+}

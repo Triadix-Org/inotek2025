@@ -3,9 +3,9 @@
     <div class="container front-page-padding">
         <div class="" id="site-intro">
             <div class="col-lg-6" id="site-intro-text">
-                <p class="site-intro-title" style="margin-top: 10px; text-transform:uppercase;">Selamat Datang<br> Startup dan UMKM!</p>
-                <p class="site-intro-subtitle">Di Inkubator Bisnis Teknologi Indonesia, yang Kredibel.</p>
-                <p class="site-intro-subtitle">Yayasan Inovasi Teknologi Indonesia (INOTEK) adalah inkubator bisnis yang didirikan untuk mendukung pengembangan usaha berbasis Teknologi Tepat Guna.</p>
+                <p class="site-intro-title" style="margin-top: 10px; text-transform:uppercase;">Welcome<br> Future Startup!</p>
+                <p class="site-intro-subtitle">To Indonesia's credible Technology Business Incubator.</p>
+                <p class="site-intro-subtitle">The Indonesian Technology Innovation Foundation (INOTEK) is a business incubator dedicated to supporting the growth of enterprises based on Appropriate Technology. Through innovation and mentorship, INOTEK empowers entrepreneurs to develop sustainable solutions that create a positive social impact.</p>
                 <p class="site-intro-subtitle" style="font-style: italic;">Applied Technology for Common Good.</p>
                 <!-- 
                     <div id="stsp-banner" style="margin-top: 30px;">
@@ -30,7 +30,7 @@
 
 <div class="container-fluid bg-gradient-primary" id="program-container">
     <div class="container front-page-padding">
-        <h2 class="heading-2 front-page-heading"><?php _e('Apakah Anda siap untuk scale up?', 'inotek2025'); ?></h2>
+        <h2 class="heading-2 front-page-heading"><?php _e('Are you ready to scale up?', 'inotek2025'); ?></h2>
         <div class="row">
             <?php
             $program_id    = inotek_get_post_id('program');
