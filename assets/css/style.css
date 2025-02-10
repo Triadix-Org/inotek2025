@@ -909,17 +909,17 @@ span.wpcf7-list-item input[type=radio]:checked {
 .button-fresh a{
   background-color: #0a55a0;
   color: white;
-  padding: 2px 20px;
+  padding: 8px 20px;
   font-size: 14px;
-  line-height: 80%;
+  line-height: 120%;
 }
 
 .button-fresh-alt a{
-  line-height: 80%;
+  line-height: 120%;
   background-color: #0a55a0;
   border: 2px solid rgb(0, 42, 90);
   color: white;
-  padding: 2px 20px;
+  padding: 8px 20px;
   font-size: 14px;
 }
 
