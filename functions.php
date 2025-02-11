@@ -289,7 +289,7 @@ function filter_posts_by_category()
 					<a class="sme-button" href="<?php echo esc_url(get_post_meta(get_the_ID(), '_olshop', true)); ?>" target="_blank">Toko Online</a>
 				</div>
 			</div>
-<?php endwhile;
+	<?php endwhile;
 		echo '</div>';
 	else :
 		echo '<p>No posts found.</p>';
@@ -301,3 +301,157 @@ function filter_posts_by_category()
 }
 add_action('wp_ajax_filter_posts', 'filter_posts_by_category');           // Untuk user login
 add_action('wp_ajax_nopriv_filter_posts', 'filter_posts_by_category');   // Untuk user non-login
+
+
+function inotek_achievement_shortcode($atts)
+{
+	ob_start();
+	?>
+	<div class="text-center row">
+		<?php
+		$achievement_args = array(
+			'post_type'     => 'inotek_achievement',
+			'post_per_page' => 6,
+			'meta_key'      => '_achievement_position',
+			'orderby'       => array('meta_value_num' => 'ASC')
+		);
+
+		$achievement_query = new WP_Query($achievement_args);
+
+		if ($achievement_query->have_posts()) {
+			while ($achievement_query->have_posts()) {
+				$achievement_query->the_post();
+				$link = trim(get_post_meta(get_the_ID(), '_achievement_link', true));
+		?>
+				<div class="stat-item col-lg-6">
+					<div class="stat-number">
+						<span class="stat-prefix"><?php echo get_post_meta(get_the_ID(), '_achievement_prefix', true); ?></span>
+						<span class="numscroller"
+							data-delay="<?php echo get_post_meta(get_the_ID(), '_achievement_delay', true); ?>"
+							data-increment="<?php echo get_post_meta(get_the_ID(), '_achievement_increment', true); ?>"
+							data-max="<?php echo get_post_meta(get_the_ID(), '_achievement_value', true); ?>"
+							data-min="1"><?php echo get_post_meta(get_the_ID(), '_achievement_value', true); ?></span>
+					</div>
+					<span class="stat-text"><a href="#"></a>
+						<?php if (empty($link)): ?>
+							<?php the_title(); ?>
+						<?php else: ?>
+							<a href="<?php print_r(get_permalink(inotek_get_url($link))); ?>"><?php the_title(); ?></a>
+						<?php endif; ?>
+					</span>
+				</div>
+		<?php
+			}
+		}
+
+		wp_reset_postdata();
+		?>
+	</div>
+<?php
+	return ob_get_clean();
+}
+add_shortcode('inotek_achievement', 'inotek_achievement_shortcode');
+
+
+// Shortcode Scale Up
+function inotek_scale_shortcode($atts)
+{
+	ob_start();
+?>
+	<div class="container-fluid bg-gradient-primary" id="forum-container">
+		<div class="container front-page-padding">
+			<div class="row forum-grid">
+				<div class="col-lg-8" style="padding-right:20px;">
+					<h2 class="heading-2 front-page-heading" style="text-align: left;"><?php _e('Scale up Forum', 'inotek2025'); ?></h2>
+					<div>
+						<?php
+						$live_forum_args = array(
+							'post_type'     => 'inotek_forum',
+							'post_per_page' => 1,
+						);
+
+						$live_forum_query = new WP_Query($live_forum_args);
+
+						if ($live_forum_query->have_posts()) {
+							while ($live_forum_query->have_posts()) {
+								$live_forum_query->the_post(); ?>
+								<h3 class="heading-4 forum-title"><?php the_title(); ?></h3>
+								<div class="embed-responsive embed-responsive-16by9">
+									<?php
+									echo get_post_meta(get_the_ID(), '_forum_embed', true);
+									?>
+								</div>
+						<?php
+							}
+						}
+
+						wp_reset_postdata();
+						?>
+
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<h2 class="heading-2 front-page-heading" style="text-align: left;"><?php _e('Upcoming events', 'inotek2025'); ?></h2>
+					<?php
+					global $post;
+
+					$events = tribe_get_events([
+						'posts_per_page' => 5,
+						'eventDisplay'   => 'custom',
+						'start_date'     => 'now',
+					]);
+
+					if (count($events) > 0):
+						foreach ($events as $post): setup_postdata($post); ?>
+							<div class="event-card">
+								<p class="event-date"><?php echo tribe_get_start_date($post, false, 'd F Y') ?></p>
+								<p class="event-title">
+									<a class="event-link"
+										href="<?php echo tribe_get_event_link(); ?>"><?php echo $post->post_title; ?></a>
+								</p>
+							</div>
+						<?php endforeach;
+					else:
+						?>
+						<p><?php echo __('No event plan yet. Stay tuned') ?></p>
+					<?php
+					endif;
+					?>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php
+	return ob_get_clean();
+}
+add_shortcode('inotek_scale_up', 'inotek_scale_shortcode');
+
+
+// ShortCode Partner
+function inotek_partner_shortcode($atts)
+{
+	ob_start();
+?>
+	<div class="partner-slide">
+		<?php
+		$partner_args  = array(
+			'post_type' => 'inotek_partner',
+			'meta_key'  => '_inotek_partner_order',
+			'orderby'   => array('meta_value_num' => 'ASC')
+		);
+		$partner_query = new WP_Query($partner_args);
+
+		if ($partner_query->have_posts()) {
+			while ($partner_query->have_posts()) {
+				$partner_query->the_post();
+				get_template_part('template-parts/frontpage/content', 'partner');
+			}
+		}
+
+		wp_reset_postdata();
+		?>
+	</div>
+<?php
+	return ob_get_clean();
+}
+add_shortcode('inotek_partner', 'inotek_partner_shortcode');

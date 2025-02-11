@@ -990,3 +990,14 @@ span.wpcf7-list-item input[type=radio]:checked {
 .rounded {
   border-radius: 20px;
 }
+
+.program-home-card {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+
+.program-home-card figure{
+  border-radius: 12px;
+}
