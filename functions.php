@@ -161,10 +161,12 @@ function inotek2020_event_cost($cost, $post_id)
 
 function inotek_sme_shortcode($atts)
 {
+	// Menangkap output HTML menggunakan output buffering
 	ob_start();
+
+	// HTML untuk filter kategori
 ?>
 	<div class="container">
-		<!-- Filter Kategori -->
 		<div class="category-filter text-center">
 			<button class="filter-button active-category-sme" data-category="">All</button>
 			<?php
@@ -181,19 +183,19 @@ function inotek_sme_shortcode($atts)
 			?>
 		</div>
 	</div>
-	<div class="container content-sme">
-		<!-- Area untuk menampilkan daftar post -->
-		<?php
-		$args = array(
-			'post_type'      => 'inotek_sme',
-			'posts_per_page' => 9,
-		);
+	<div class="container sme-content">
+		<div class="row gx-4">
+			<?php
+			// WP_Query untuk menampilkan post
+			$args = array(
+				'post_type'      => 'inotek_sme',
+				'posts_per_page' => 9,
+			);
 
-		$parent = new WP_Query($args);
+			$parent = new WP_Query($args);
 
-		if ($parent->have_posts()) : ?>
-			<div class="row gx-4">
-				<?php while ($parent->have_posts()) : $parent->the_post(); ?>
+			if ($parent->have_posts()) :
+				while ($parent->have_posts()) : $parent->the_post(); ?>
 					<div id="parent-<?php the_ID(); ?>" class="page-sme-item col-sm-4">
 						<?php if (has_post_thumbnail()) : ?>
 							<?php the_post_thumbnail('medium', array('class' => 'img-responsive sme-thumb', 'title' => 'Feature image')); ?>
@@ -207,19 +209,19 @@ function inotek_sme_shortcode($atts)
 							<a class="sme-button" href="<?php echo esc_url(get_post_meta(get_the_ID(), '_olshop', true)); ?>" target="_blank">Toko Online</a>
 						</div>
 					</div>
-				<?php endwhile; ?>
-			</div>
-		<?php endif;
-
-		wp_reset_postdata();
-		?>
+			<?php endwhile;
+			endif;
+			wp_reset_postdata();
+			?>
+		</div>
 	</div>
+
 	<script>
 		jQuery(document).ready(function($) {
 			$('.filter-button').on('click', function() {
 				var category = $(this).data('category');
 
-				// Tambahkan class 'active-category-sme' ke tombol yang diklik, hapus dari tombol lainnya
+				// Tambahkan class 'active' ke tombol yang diklik, hapus dari tombol lainnya
 				$('.filter-button').removeClass('active-category-sme');
 				$(this).addClass('active-category-sme');
 
@@ -231,18 +233,24 @@ function inotek_sme_shortcode($atts)
 						category: category
 					},
 					beforeSend: function() {
-						$('.content-sme').html('<p>Loading...</p>');
+						$('.sme-content').html('<p>Loading...</p>');
 					},
 					success: function(response) {
-						$('.content-sme').html(response);
+						$('.sme-content').html(response);
+					},
+					error: function() {
+						$('.sme-content').html('<p>Error loading content.</p>');
 					}
 				});
 			});
 		});
 	</script>
 	<?php
+
+	return ob_get_clean();
 }
 add_shortcode('inotek_sme', 'inotek_sme_shortcode');
+
 
 function filter_posts_by_category()
 {
