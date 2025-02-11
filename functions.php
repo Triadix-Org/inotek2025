@@ -159,49 +159,137 @@ function inotek2020_event_cost($cost, $post_id)
 	return tribe_format_currency($cost_format, $post_id);
 }
 
-function inotek_filter_posts()
+function inotek_sme_shortcode($atts)
+{
+	ob_start();
+?>
+	<div class="container">
+		<!-- Filter Kategori -->
+		<div class="category-filter text-center">
+			<button class="filter-button active-category-sme" data-category="">All</button>
+			<?php
+			$categories = get_terms([
+				'taxonomy'   => 'sme-categories',
+				'hide_empty' => true,
+			]);
+
+			if (!empty($categories) && !is_wp_error($categories)) {
+				foreach ($categories as $category) {
+					echo '<button class="filter-button" data-category="' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</button>';
+				}
+			}
+			?>
+		</div>
+	</div>
+	<div class="container content-sme">
+		<!-- Area untuk menampilkan daftar post -->
+		<?php
+		$args = array(
+			'post_type'      => 'inotek_sme',
+			'posts_per_page' => 9,
+		);
+
+		$parent = new WP_Query($args);
+
+		if ($parent->have_posts()) : ?>
+			<div class="row gx-4">
+				<?php while ($parent->have_posts()) : $parent->the_post(); ?>
+					<div id="parent-<?php the_ID(); ?>" class="page-sme-item col-sm-4">
+						<?php if (has_post_thumbnail()) : ?>
+							<?php the_post_thumbnail('medium', array('class' => 'img-responsive sme-thumb', 'title' => 'Feature image')); ?>
+						<?php endif; ?>
+						<div class="text-center sme-desc">
+							<h4 class="text-color-primary"><strong><?php the_title(); ?></strong></h4>
+							<div class="text-md"><?php echo get_post_meta(get_the_ID(), '_location', true); ?></div>
+						</div>
+						<div class="sme-cta text-center">
+							<a class="sme-button" href="<?php echo esc_url(get_post_meta(get_the_ID(), '_website', true)); ?>" target="_blank">Website</a>
+							<a class="sme-button" href="<?php echo esc_url(get_post_meta(get_the_ID(), '_olshop', true)); ?>" target="_blank">Toko Online</a>
+						</div>
+					</div>
+				<?php endwhile; ?>
+			</div>
+		<?php endif;
+
+		wp_reset_postdata();
+		?>
+	</div>
+	<script>
+		jQuery(document).ready(function($) {
+			$('.filter-button').on('click', function() {
+				var category = $(this).data('category');
+
+				// Tambahkan class 'active-category-sme' ke tombol yang diklik, hapus dari tombol lainnya
+				$('.filter-button').removeClass('active-category-sme');
+				$(this).addClass('active-category-sme');
+
+				$.ajax({
+					url: "<?php echo admin_url('admin-ajax.php'); ?>",
+					type: "POST",
+					data: {
+						action: "filter_posts",
+						category: category
+					},
+					beforeSend: function() {
+						$('.content-sme').html('<p>Loading...</p>');
+					},
+					success: function(response) {
+						$('.content-sme').html(response);
+					}
+				});
+			});
+		});
+	</script>
+	<?php
+}
+add_shortcode('inotek_sme', 'inotek_sme_shortcode');
+
+function filter_posts_by_category()
 {
 	$category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
 
-	$args = [
-		'post_type' => 'inotek_sme',
-		'posts_per_page' => 8,
-	];
+	$args = array(
+		'post_type'      => 'inotek_sme',
+		'posts_per_page' => 9,
+	);
 
 	if (!empty($category)) {
-		$args['tax_query'] = [
-			[
+		$args['tax_query'] = array(
+			array(
 				'taxonomy' => 'sme-categories',
 				'field'    => 'slug',
 				'terms'    => $category,
-			],
-		];
+			)
+		);
 	}
 
 	$query = new WP_Query($args);
 
-	if ($query->have_posts()) {
-		while ($query->have_posts()) {
-			$query->the_post();
-?>
+	if ($query->have_posts()) :
+		echo '<div class="row gx-4">';
+		while ($query->have_posts()) : $query->the_post(); ?>
 			<div id="parent-<?php the_ID(); ?>" class="page-sme-item col-sm-4">
-				<?php the_post_thumbnail(array(156, false), array('class' => 'img-responsive sme-thumb', 'title' => 'Feature image')); ?>
+				<?php if (has_post_thumbnail()) : ?>
+					<?php the_post_thumbnail('medium', array('class' => 'img-responsive sme-thumb', 'title' => 'Feature image')); ?>
+				<?php endif; ?>
 				<div class="text-center sme-desc">
 					<h4 class="text-color-primary"><strong><?php the_title(); ?></strong></h4>
 					<div class="text-md"><?php echo get_post_meta(get_the_ID(), '_location', true); ?></div>
 				</div>
 				<div class="sme-cta text-center">
-					<a class="sme-button" href="<?php echo get_post_meta(get_the_ID(), '_website', true); ?>">Website</a>
-					<a class="sme-button" href="<?php echo get_post_meta(get_the_ID(), '_olshop', true); ?>">Toko Online</a>
+					<a class="sme-button" href="<?php echo esc_url(get_post_meta(get_the_ID(), '_website', true)); ?>" target="_blank">Website</a>
+					<a class="sme-button" href="<?php echo esc_url(get_post_meta(get_the_ID(), '_olshop', true)); ?>" target="_blank">Toko Online</a>
 				</div>
 			</div>
-<?php
-		}
-	} else {
+<?php endwhile;
+		echo '</div>';
+	else :
 		echo '<p>No posts found.</p>';
-	}
+	endif;
+
+	wp_reset_postdata();
 
 	wp_die();
 }
-add_action('wp_ajax_filter_posts', 'inotek_filter_posts');
-add_action('wp_ajax_nopriv_filter_posts', 'inotek_filter_posts');
+add_action('wp_ajax_filter_posts', 'filter_posts_by_category');           // Untuk user login
+add_action('wp_ajax_nopriv_filter_posts', 'filter_posts_by_category');   // Untuk user non-login

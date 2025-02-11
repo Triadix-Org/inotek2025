@@ -397,3 +397,52 @@
         </div>
     </div>
 <?php get_footer();
+
+
+
+function inotek_filter_posts()
+{
+	$category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
+
+	$args = [
+		'post_type' => 'inotek_sme',
+		'posts_per_page' => 8,
+	];
+
+	if (!empty($category)) {
+		$args['tax_query'] = [
+			[
+				'taxonomy' => 'sme-categories',
+				'field'    => 'slug',
+				'terms'    => $category,
+			],
+		];
+	}
+
+	$query = new WP_Query($args);
+
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+?>
+			<div id="parent-<?php the_ID(); ?>" class="page-sme-item col-sm-4">
+				<?php the_post_thumbnail(array(156, false), array('class' => 'img-responsive sme-thumb', 'title' => 'Feature image')); ?>
+				<div class="text-center sme-desc">
+					<h4 class="text-color-primary"><strong><?php the_title(); ?></strong></h4>
+					<div class="text-md"><?php echo get_post_meta(get_the_ID(), '_location', true); ?></div>
+				</div>
+				<div class="sme-cta text-center">
+					<a class="sme-button" href="<?php echo get_post_meta(get_the_ID(), '_website', true); ?>">Website</a>
+					<a class="sme-button" href="<?php echo get_post_meta(get_the_ID(), '_olshop', true); ?>">Toko Online</a>
+				</div>
+			</div>
+<?php
+		}
+	} else {
+		echo '<p>No posts found.</p>';
+	}
+
+	wp_die();
+}
+add_action('wp_ajax_filter_posts', 'inotek_filter_posts');
+add_action('wp_ajax_nopriv_filter_posts', 'inotek_filter_posts');
