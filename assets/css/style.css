@@ -1005,3 +1005,11 @@ span.wpcf7-list-item input[type=radio]:checked {
 .hero-image-2025 img{
   box-shadow: #0075ff 0px 20px 35px -20px;
 }
+
+.btn-annual-report-home a {
+  width: 100% !important;
+  background-color: #0075FF;
+  color: #fff;
+  border-radius: 20px;
+  padding: 25px 20px;
+}
