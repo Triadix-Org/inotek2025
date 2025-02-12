@@ -437,7 +437,8 @@ function inotek_partner_shortcode($atts)
 		$partner_args  = array(
 			'post_type' => 'inotek_partner',
 			'meta_key'  => '_inotek_partner_order',
-			'orderby'   => array('meta_value_num' => 'ASC')
+			'orderby'   => array('meta_value_num' => 'ASC'),
+			'posts_per_page' => -1
 		);
 		$partner_query = new WP_Query($partner_args);
 

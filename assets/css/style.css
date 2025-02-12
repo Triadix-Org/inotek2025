@@ -1001,3 +1001,7 @@ span.wpcf7-list-item input[type=radio]:checked {
 .program-home-card figure{
   border-radius: 12px;
 }
+
+.hero-image-2025 img{
+  box-shadow: #0075ff 0px 20px 35px -20px;
+}

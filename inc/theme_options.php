@@ -30,7 +30,7 @@ function inotek_options_funding($wp_customize)
 			'label'       => __('Inotek funder url'),
 			'description' => esc_html__('Inotek funder url'),
 			'section'     => 'inotek_section',
-			'priority'    => 10, // Optional. Order priority to load the control. Default: 10
+			'priority'    => 11, // Optional. Order priority to load the control. Default: 10
 			'type'        => 'dropdown-pages', // Can be either text, email, url, number, hidden, or date
 			'capability'  => 'edit_theme_options', // Optional. Default: 'edit_theme_options'
 			'input_attrs' => array( // Optional.
@@ -54,7 +54,7 @@ function inotek_options_funding($wp_customize)
 			'label'       => __('Inotek partner url'),
 			'description' => esc_html__('Inotek partner url'),
 			'section'     => 'inotek_section',
-			'priority'    => 11, // Optional. Order priority to load the control. Default: 10
+			'priority'    => 13, // Optional. Order priority to load the control. Default: 10
 			'type'        => 'dropdown-pages', // Can be either text, email, url, number, hidden, or date
 			'capability'  => 'edit_theme_options', // Optional. Default: 'edit_theme_options'
 			'input_attrs' => array( // Optional.
