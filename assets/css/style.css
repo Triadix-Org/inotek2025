@@ -1007,9 +1007,33 @@ span.wpcf7-list-item input[type=radio]:checked {
 }
 
 .btn-annual-report-home a {
-  width: 100% !important;
   background-color: #0075FF;
   color: #fff;
   border-radius: 20px;
   padding: 25px 20px;
+}
+
+.ps-1 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.ps-2 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.ps-3 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.ps-4 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.ps-5 {
+  padding-left: 50px;
+  padding-right: 50px;
 }
