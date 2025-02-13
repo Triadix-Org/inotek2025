@@ -203,10 +203,18 @@ function inotek_sme_shortcode($atts)
 						<div class="text-center sme-desc">
 							<h4 class="text-color-primary"><strong><?php the_title(); ?></strong></h4>
 							<div class="text-md"><?php echo get_post_meta(get_the_ID(), '_location', true); ?></div>
+							<?php
+							$terms = get_the_terms(get_the_ID(), 'sme-categories');
+							if ($terms && !is_wp_error($terms)) {
+								foreach ($terms as $term) {
+									echo '<div class="text-md">Category: <strong>' . esc_html($term->name) . '</strong></div>';
+								}
+							}
+							?>
 						</div>
 						<div class="sme-cta text-center">
 							<a class="sme-button" href="<?php echo esc_url(get_post_meta(get_the_ID(), '_website', true)); ?>" target="_blank">Website</a>
-							<a class="sme-button" href="<?php echo esc_url(get_post_meta(get_the_ID(), '_olshop', true)); ?>" target="_blank">Toko Online</a>
+							<a class="sme-button" href="<?php echo esc_url(get_post_meta(get_the_ID(), '_olshop', true)); ?>" target="_blank">Online Shop</a>
 						</div>
 					</div>
 			<?php endwhile;
@@ -283,10 +291,18 @@ function filter_posts_by_category()
 				<div class="text-center sme-desc">
 					<h4 class="text-color-primary"><strong><?php the_title(); ?></strong></h4>
 					<div class="text-md"><?php echo get_post_meta(get_the_ID(), '_location', true); ?></div>
+					<?php
+					$terms = get_the_terms(get_the_ID(), 'sme-categories');
+					if ($terms && !is_wp_error($terms)) {
+						foreach ($terms as $term) {
+							echo '<div class="text-md">Category: <strong>' . esc_html($term->name) . '</strong></div>';
+						}
+					}
+					?>
 				</div>
 				<div class="sme-cta text-center">
 					<a class="sme-button" href="<?php echo esc_url(get_post_meta(get_the_ID(), '_website', true)); ?>" target="_blank">Website</a>
-					<a class="sme-button" href="<?php echo esc_url(get_post_meta(get_the_ID(), '_olshop', true)); ?>" target="_blank">Toko Online</a>
+					<a class="sme-button" href="<?php echo esc_url(get_post_meta(get_the_ID(), '_olshop', true)); ?>" target="_blank">Online Shop</a>
 				</div>
 			</div>
 	<?php endwhile;
