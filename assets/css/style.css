@@ -1037,3 +1037,170 @@ span.wpcf7-list-item input[type=radio]:checked {
   padding-left: 50px;
   padding-right: 50px;
 }
+
+.timeline {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px 0;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background: #006E51;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.container-journey {
+  margin: -25px 0;
+  padding: 0 30px;
+  position: relative;
+  background: inherit;
+  width: 50%;
+}
+
+.container-journey.left {
+  left: 0;
+}
+
+.container-journey.right {
+  left: 50%;
+}
+
+.container-journey::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: calc(50% - 8px);
+  right: -8px;
+  background: #ffffff;
+  border: 2px solid #006E51;
+  border-radius: 16px;
+  z-index: 1;
+}
+
+.container-journey.right::after {
+  left: -8px;
+}
+
+.container-journey::before {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 2px;
+  top: calc(50% - 1px);
+  right: 8px;
+  background: #006E51;
+  z-index: 1;
+}
+
+.container-journey.right::before {
+  left: 8px;
+}
+
+.container-journey .date-journey {
+  position: absolute;
+  display: inline-block;
+  top: calc(50% - 15px);
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #006E51;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 1;
+}
+
+.container-journey.left .date-journey {
+  right: -115px;
+}
+
+.container-journey.right .date-journey {
+  left: -115px;
+}
+
+.container-journey .content-journey {
+  padding: 20px 20px 20px 0;
+  background: #044fa5;
+  position: relative;
+  border-radius: 15px;
+}
+
+.container-journey.right .content-journey {
+  padding: 20px 20px 20px 0;
+  border-radius: 15px;
+}
+
+.container-journey .content-journey h2 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  font-weight: normal;
+  color: #006E51;
+}
+
+.container-journey .content-journey p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+}
+
+@media (max-width: 767.98px) {
+  .timeline::after {
+    left: 20px;
+  }
+
+  .container-journey {
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 10px;
+    margin: 5px 0;
+  }
+
+  .container-journey.right {
+    left: 0%;
+  }
+
+  .container-journey.left::after, 
+  .container-journey.right::after {
+    left: 12px;
+  }
+
+  .container-journey.left::before,
+  .container-journey.right::before {
+    left: 100px;
+    border-color: transparent #006E51 transparent transparent;
+  }
+
+  .container-journey.left .date-journey,
+  .container-journey.right .date-journey {
+    right: auto;
+    left: 15px;
+  }
+
+  .container-journey.left .content-journey,
+  .container-journey.right .content-journey {
+    padding: 20px 20px 20px 0;
+    border-radius: 10px;
+  }
+}
+
+.desc-journey {
+  font-size: 12px;
+  line-height: 120%;
+  color: #fff;
+}
+
+.title-journey {
+  padding-left: 40px;
+  padding-bottom: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bolder;
+}

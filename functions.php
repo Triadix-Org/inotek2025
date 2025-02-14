@@ -472,3 +472,68 @@ function inotek_partner_shortcode($atts)
 	return ob_get_clean();
 }
 add_shortcode('inotek_partner', 'inotek_partner_shortcode');
+
+function inotek_journeys_shortcode($atts)
+{
+	ob_start();
+?>
+
+	<div class="timeline">
+		<?php
+		$journey_args = array(
+			'post_type'     => 'inotek_journey',
+			'orderby'       => array('meta_value_num' => 'ASC')
+		);
+
+		$journey_query = new WP_Query($journey_args);
+		$counter = 0; // Inisialisasi counter
+
+		if ($journey_query->have_posts()) :
+			while ($journey_query->have_posts()) : $journey_query->the_post();
+				$class = ($counter % 2 === 0) ? 'left' : 'right'; // Tentukan class selang-seling
+		?>
+				<div class="container-journey <?php echo $class; ?>">
+					<div class="content-journey">
+						<div class="title-journey"><?php the_title(); ?></div>
+						<div class="desc-journey"><?php the_content(); ?></div>
+					</div>
+				</div>
+		<?php
+				$counter++; // Increment counter
+			endwhile;
+			wp_reset_postdata();
+		endif;
+		?>
+	</div>
+	<script>
+		const accordionItems = document.querySelectorAll('.accordion-item');
+
+		accordionItems.forEach(item => {
+			const title = item.querySelector('.accordion-title');
+			const content = item.querySelector('.accordion-content');
+
+			title.addEventListener('click', () => {
+				// Tutup semua konten yang terbuka
+				accordionItems.forEach(i => {
+					const otherContent = i.querySelector('.accordion-content');
+					if (i !== item && otherContent.classList.contains('open')) {
+						otherContent.classList.remove('open');
+						otherContent.style.maxHeight = null;
+					}
+				});
+
+				// Toggle konten item yang diklik
+				if (content.classList.contains('open')) {
+					content.classList.remove('open');
+					content.style.maxHeight = null;
+				} else {
+					content.classList.add('open');
+					content.style.maxHeight = content.scrollHeight + "px";
+				}
+			});
+		});
+	</script>
+<?php
+	return ob_get_clean();
+}
+add_shortcode('inotek_journey', 'inotek_journeys_shortcode');
