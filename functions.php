@@ -482,7 +482,8 @@ function inotek_journeys_shortcode($atts)
 		<?php
 		$journey_args = array(
 			'post_type'     => 'inotek_journey',
-			'orderby'       => array('meta_value_num' => 'ASC')
+			'orderby'       => array('meta_value_num' => 'ASC'),
+			'posts_per_page' => -1
 		);
 
 		$journey_query = new WP_Query($journey_args);
