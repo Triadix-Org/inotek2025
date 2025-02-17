@@ -26,20 +26,8 @@
                             $main_nav_args = array(
                                 'menu'            => '',
                                 'container'       => '',
-                                'container_class' => '',
-                                'container_id'    => '',
                                 'menu_class'      => 'list-unstyled list-inline',
                                 'menu_id'         => 'main-menu',
-                                'echo'            => true,
-                                'fallback_cb'     => false,
-                                'before'          => '',
-                                'after'           => '',
-                                'link_before'     => '',
-                                'link_after'      => '',
-                                'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-                                'item_spacing'    => 'preserve',
-                                'depth'           => 0,
-                                'walker'          => '',
                                 'theme_location'  => 'main-menu',
                             );
                             wp_nav_menu($main_nav_args);
@@ -54,6 +42,69 @@
                 </div>
             </div>
         </header>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu-wrapper" class="visible-xs">
+            <button id="mobile-menu-toggle">☰</button>
+            <nav id="mobile-menu">
+                <?php
+                $mobile_nav_args = array(
+                    'menu'            => '',
+                    'container'       => '',
+                    'menu_class'      => 'mobile-menu-list',
+                    'menu_id'         => 'mobile-menu-list',
+                    'theme_location'  => 'main-menu',
+                );
+                wp_nav_menu($mobile_nav_args);
+                ?>
+            </nav>
+        </div>
     </div>
 
-    <main>
+    <script>
+        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('open');
+        });
+    </script>
+
+    <style>
+        #mobile-menu-wrapper {
+            position: relative;
+            text-align: right;
+            padding: 10px;
+        }
+
+        #mobile-menu-toggle {
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        #mobile-menu {
+            display: none;
+            background: #333;
+            padding: 10px;
+            position: absolute;
+            top: 40px;
+            right: 10px;
+            width: 200px;
+            border-radius: 5px;
+        }
+
+        #mobile-menu.open {
+            display: block;
+        }
+
+        .mobile-menu-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .mobile-menu-list li a {
+            color: white;
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+        }
+    </style>
