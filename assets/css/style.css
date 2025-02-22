@@ -302,7 +302,7 @@ a:hover {
 
 .partner-item {
   text-align: center;
-  width: 250px;
+  width: 300px;
 }
 
 .partner-link img {
@@ -572,14 +572,6 @@ a:hover {
 
 .slick-slide {
   /*height: 200px;*/
-}
-
-#site-page {
-  background: url("../images/illustration/hero-lines2x.png") no-repeat center
-    bottom;
-  background-size: 33.5%;
-  /* padding-bottom: 132px;
-  padding-top: 20px; */
 }
 
 .page-title {
@@ -970,7 +962,7 @@ span.wpcf7-list-item input[type="radio"]:checked {
 }
 
 .category-filter {
-  padding: 60px 0;
+  padding: 30px 0;
 }
 
 .filter-button {
@@ -1254,4 +1246,8 @@ span.wpcf7-list-item input[type="radio"]:checked {
 .rounded-top-separator {
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
+}
+
+.heading-program a {
+  color: #10035b;
 }
