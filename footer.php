@@ -8,7 +8,7 @@ echo get_template_part('template-parts/modal', 'search');
 			<div class="footer-menu-container">
 				<div class="col-lg-3 col-sm-3">
 					<img alt="Inotek Icon" class="inotek-icon"
-						src="<?php echo get_template_directory_uri() ?>/assets/images/logo-only.png" width="48">
+						src="<?php echo get_template_directory_uri() ?>/assets/images/inotek-white-logo.png" height="60">
 				</div>
 				<div class="col-lg-3 col-sm-3">
 					<?php
@@ -94,6 +94,10 @@ echo get_template_part('template-parts/modal', 'search');
 		</div>
 	</footer>
 </div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+	AOS.init();
+</script>
 <?php wp_footer(); ?>
 </body>
 

@@ -377,7 +377,7 @@ function inotek_scale_shortcode($atts)
 	<div class="container-fluid bg-gradient-primary" id="forum-container">
 		<div class="container front-page-padding">
 			<div class="row forum-grid">
-				<div class="col-lg-8" style="padding-right:20px;">
+				<div class="col-lg-6" style="padding-right:20px;">
 					<h2 class="heading-2 front-page-heading" style="text-align: left;"><?php _e('Scale up Forum', 'inotek2025'); ?></h2>
 					<div>
 						<?php
@@ -406,7 +406,7 @@ function inotek_scale_shortcode($atts)
 
 					</div>
 				</div>
-				<div class="col-lg-4">
+				<div class="col-lg-6">
 					<h2 class="heading-2 front-page-heading" style="text-align: left;"><?php _e('Upcoming events', 'inotek2025'); ?></h2>
 					<?php
 					global $post;
@@ -493,7 +493,7 @@ function inotek_journeys_shortcode($atts)
 			while ($journey_query->have_posts()) : $journey_query->the_post();
 				$class = ($counter % 2 === 0) ? 'left' : 'right'; // Tentukan class selang-seling
 		?>
-				<div class="container-journey <?php echo $class; ?>">
+				<div class="container-journey <?php echo $class; ?> " data-aos="fade-up" data-aos-duration="2000">
 					<div class="content-journey">
 						<div class="title-journey"><?php the_title(); ?></div>
 						<div class="desc-journey"><?php the_content(); ?></div>

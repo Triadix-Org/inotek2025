@@ -7,6 +7,7 @@
     <meta content="<?php wp_title(); ?>" property="og:title">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;600&display=swap"
         rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <?php wp_head(); ?>
 </head>
 
@@ -17,10 +18,10 @@
                 <div class="row">
                     <div class="col-lg-2 col-sm-6" id="logo">
                         <a href="<?php echo home_url(); ?>">
-                            <img alt="Inotek" id="logo-image" class="img-responsive" src="<?php echo get_template_directory_uri() ?>/assets/images/logo.png">
+                            <img alt="Inotek" id="logo-image" class="img-responsive" src="<?php echo get_template_directory_uri() ?>/assets/images/inotek-logo.png">
                         </a>
                     </div>
-                    <div class="col-lg-8 hidden-xs">
+                    <div class="col-lg-9 col-sm-4 hidden-xs">
                         <nav>
                             <?php
                             $main_nav_args = array(
@@ -34,7 +35,7 @@
                             ?>
                         </nav>
                     </div>
-                    <div class="col-lg-2 col-sm-6">
+                    <div class="col-lg-1 col-sm-2">
                         <div class="pull-right">
                             <?php get_template_part('template-parts/menu/menu', 'main'); ?>
                         </div>
