@@ -284,7 +284,7 @@ function filter_posts_by_category()
 	if ($query->have_posts()) :
 		echo '<div class="row gx-4">';
 		while ($query->have_posts()) : $query->the_post(); ?>
-			<div id="parent-<?php the_ID(); ?>" class="page-sme-item col-sm-4">
+			<div id="parent-<?php the_ID(); ?>" class="page-sme-item col-sm-3">
 				<?php if (has_post_thumbnail()) : ?>
 					<?php the_post_thumbnail('medium', array('class' => 'img-responsive sme-thumb', 'title' => 'Feature image')); ?>
 				<?php endif; ?>
@@ -295,7 +295,7 @@ function filter_posts_by_category()
 					$terms = get_the_terms(get_the_ID(), 'sme-categories');
 					if ($terms && !is_wp_error($terms)) {
 						foreach ($terms as $term) {
-							echo '<div class="text-md">Category: <strong>' . esc_html($term->name) . '</strong></div>';
+							echo '<div class="text-md text-color-primary">Category: <strong>' . esc_html($term->name) . '</strong></div>';
 						}
 					}
 					?>
