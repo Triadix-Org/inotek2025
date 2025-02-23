@@ -1264,3 +1264,7 @@ span.wpcf7-list-item input[type="radio"]:checked {
   border-radius: 20px;
   z-index: 10;
 }
+
+.line-height-2 {
+  line-height: 120%;
+}
