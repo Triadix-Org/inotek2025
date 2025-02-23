@@ -33,5 +33,15 @@ jQuery(document).ready(function ($) {
     ],
   });
 
+  $(".hero-homepage").slick({
+    infinite: true,
+    dots: false,
+    fade: true,
+    autoplay: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplaySpeed: 2000,
+  });
+
   $("#consultant-container").easytabs();
 });

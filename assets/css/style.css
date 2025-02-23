@@ -1251,3 +1251,16 @@ span.wpcf7-list-item input[type="radio"]:checked {
 .heading-program a {
   color: #10035b;
 }
+
+.hero-homepage {
+  width: 100%;
+  box-shadow: #0075ff 0px 20px 35px -20px;
+  border-radius: 20px;
+}
+
+.hero-homepage img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  z-index: 10;
+}

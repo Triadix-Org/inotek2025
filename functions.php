@@ -538,3 +538,18 @@ function inotek_journeys_shortcode($atts)
 	return ob_get_clean();
 }
 add_shortcode('inotek_journey', 'inotek_journeys_shortcode');
+
+// Hero Image Slider
+function inotek_hero_shortcode($atts)
+{
+	ob_start();
+?>
+	<div class="hero-homepage">
+		<img src="<?php echo get_template_directory_uri() ?>/assets/images/hero-images/hero-1.png" alt="Hero Image 1">
+		<img src="<?php echo get_template_directory_uri() ?>/assets/images/hero-images/hero-2.jpg" alt="Hero Image 2">
+		<img src="<?php echo get_template_directory_uri() ?>/assets/images/hero-images/hero-3.png" alt="Hero Image 3">
+	</div>
+<?php
+	return ob_get_clean();
+}
+add_shortcode('inotek_hero', 'inotek_hero_shortcode');
