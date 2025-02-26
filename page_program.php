@@ -23,7 +23,10 @@
 					<?php the_content(); ?>
 				</div>
 			</div>
-			<div class="bg-gradient-primary rounded-top-separator" style="height: 60px; margin-top: 80px;"></div>
+			<?php
+			if ($parent->current_post + 1 < $parent->post_count) : ?>
+				<div class="bg-gradient-primary rounded-top-separator" style="height: 60px; margin-top: 80px;"></div>
+			<?php endif; ?>
 		<?php endwhile; ?>
 	<?php endif;
 	wp_reset_postdata(); ?>

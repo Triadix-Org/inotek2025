@@ -377,7 +377,7 @@ function inotek_scale_shortcode($atts)
 	<div class="container-fluid bg-gradient-primary" id="forum-container">
 		<div class="container front-page-padding">
 			<div class="row forum-grid">
-				<div class="col-lg-6" style="padding-right:20px;">
+				<div class="col-lg-6">
 					<h2 class="heading-2 front-page-heading" style="text-align: left;"><?php _e('Scale up Forum', 'inotek2025'); ?></h2>
 					<div>
 						<?php
@@ -406,7 +406,7 @@ function inotek_scale_shortcode($atts)
 
 					</div>
 				</div>
-				<div class="col-lg-6">
+				<div class="col-lg-6" style="padding-left:80px;">
 					<h2 class="heading-2 front-page-heading" style="text-align: left;"><?php _e('Upcoming events', 'inotek2025'); ?></h2>
 					<?php
 					global $post;
@@ -425,6 +425,9 @@ function inotek_scale_shortcode($atts)
 									<a class="event-link"
 										href="<?php echo tribe_get_event_link(); ?>"><?php echo $post->post_title; ?></a>
 								</p>
+								<div>
+									<?= tribe_event_featured_image($post, "medium"); ?>
+								</div>
 							</div>
 						<?php endforeach;
 					else:
