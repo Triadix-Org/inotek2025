@@ -189,7 +189,7 @@ function inotek_sme_shortcode($atts)
 			// WP_Query untuk menampilkan post
 			$args = array(
 				'post_type'      => 'inotek_sme',
-				'posts_per_page' => 9,
+				'posts_per_page' => -1,
 			);
 
 			$parent = new WP_Query($args);
@@ -426,7 +426,7 @@ function inotek_scale_shortcode($atts)
 										href="<?php echo tribe_get_event_link(); ?>"><?php echo $post->post_title; ?></a>
 								</p>
 								<div>
-									<?= tribe_event_featured_image($post, "medium"); ?>
+									<?php echo tribe_event_featured_image($post, "medium"); ?>
 								</div>
 							</div>
 						<?php endforeach;
@@ -548,9 +548,23 @@ function inotek_hero_shortcode($atts)
 	ob_start();
 ?>
 	<div class="hero-homepage">
-		<img src="<?php echo get_template_directory_uri() ?>/assets/images/hero-images/hero-1.png" alt="Hero Image 1">
-		<img src="<?php echo get_template_directory_uri() ?>/assets/images/hero-images/hero-2.jpg" alt="Hero Image 2">
-		<img src="<?php echo get_template_directory_uri() ?>/assets/images/hero-images/hero-3.png" alt="Hero Image 3">
+		<?php
+		$journey_args = array(
+			'post_type'      => 'inotek_hero',
+			'orderby'        => 'meta_value_num',
+			'order'          => 'ASC',
+			'posts_per_page' => -1
+		);
+
+		$journey_query = new WP_Query($journey_args);
+
+		if ($journey_query->have_posts()) :
+			while ($journey_query->have_posts()) : $journey_query->the_post();
+				the_post_thumbnail('medium', array('class' => 'img-responsive hero-image', 'title' => 'Feature image'));
+			endwhile;
+			wp_reset_postdata();
+		endif;
+		?>
 	</div>
 <?php
 	return ob_get_clean();

@@ -207,6 +207,7 @@ a:hover {
 .article-content p,
 .page-content p {
   margin-bottom: 1.4em;
+  color: #10035b;
 }
 
 .article-share {
