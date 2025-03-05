@@ -392,7 +392,7 @@ function inotek_scale_shortcode($atts)
 							while ($live_forum_query->have_posts()) {
 								$live_forum_query->the_post(); ?>
 								<h3 class="heading-4 forum-title"><?php the_title(); ?></h3>
-								<div class="embed-responsive embed-responsive-16by9">
+								<div class="embed-responsive embed-responsive-16by9" style="margin-top: 35px;">
 									<?php
 									echo get_post_meta(get_the_ID(), '_forum_embed', true);
 									?>
