@@ -85,7 +85,8 @@ echo get_template_part('template-parts/modal', 'search');
 			</div>
 			<div class="row">
 				<div class="copyright col-lg-6 col-sm-12" style="color: #fff;">
-					&copy; 2020 INOTEK Foundation. All Rights Reserved.
+					&copy; <?php echo date("Y"); ?>
+					INOTEK Foundation. All Rights Reserved.
 				</div>
 				<div id="back-to-top" class="col-lg-6 col-sm-12">
 					<a href="#" style="color: #fff;">Back to Top</a>
