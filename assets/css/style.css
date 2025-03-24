@@ -210,6 +210,11 @@ a:hover {
   color: #10035b;
 }
 
+.article-content ul li,
+.page-content ul li {
+  color: #10035b;
+}
+
 .article-share {
   margin: 60px 0;
 }
